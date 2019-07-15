@@ -81,7 +81,7 @@ def addAcc(service):
 
 # Code
 print("Welcome to Nate's Password Vault!")
-if (os.path.exists("accounts.txt") == False):
+if (not os.path.exists("accounts.txt")):
     tmp = open("accounts.txt", "w")
     tmp.close()
 while True:
