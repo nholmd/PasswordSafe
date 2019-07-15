@@ -1,3 +1,7 @@
+import os.path
+from os import path
+
+# Function Definitions
 def encrypt(un, pw, act, key):
     key = strToHex(key)
     un = strToHex(un)
@@ -76,9 +80,11 @@ def addAcc(service):
     encrypt(name, pas, service, key)
     print("Account created.")
 
-
 # Code
 print("Welcome to Nate's Password Vault!")
+if (os.path.exists("accounts.txt") == False):
+    tmp = open("accounts.txt", "w")
+    tmp.close()
 while True:
     print()
     print("Would you like to add or view an account or quit?")
@@ -125,5 +131,3 @@ while True:
     elif (response.startswith("q")):
         print("Exiting.")
         break
-            
-    
