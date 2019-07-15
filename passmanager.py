@@ -4,11 +4,10 @@ from os import path
 # Function Definitions
 def encrypt(un, pw, act, key):
     key = strToHex(key)
-    un = strToHex(un)
     pw = strToHex(pw)
     accounts = open("accounts.txt", "a")
     accounts.write(":" + act + "\n")
-    accounts.write(convert(un, key, "+") + "\n")
+    accounts.write(un + "\n")
     accounts.write(convert(pw, key, "+") + "\n")
     accounts.write("\n")
     accounts.close()
@@ -51,7 +50,7 @@ def decrypt(act, key):
     for i in range(len(lines) - 1):
         line = lines[i]
         if (line[0] == ":" and line[1:len(line) - 1] == act):
-            un = hexSplit(lines[i + 1])
+            un = lines[i + 1]
             pw = hexSplit(lines[i + 2])
             found = True
             break
@@ -62,7 +61,7 @@ def decrypt(act, key):
         key = strToHex(key)
         print()
         print("Account for " + act + " was found")
-        print("Username: " + hexToStr(convert(un, key, "-")))
+        print("Username: " + un)
         print("Password: " + hexToStr(convert(pw, key, "-")))
     accounts.close()
 
