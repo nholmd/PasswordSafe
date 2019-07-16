@@ -61,7 +61,7 @@ def decrypt(act, key):
         key = strToHex(key)
         print()
         print("Account for " + act + " was found")
-        print("Username: " + un)
+        print("Username: " + un.strip())
         print("Password: " + hexToStr(convert(pw, key, "-")))
     accounts.close()
 
@@ -105,7 +105,7 @@ while True:
                 print("This account already exists. Overwrite?")
                 response = input()
                 if response.startswith("y"):
-                    # remove old account
+                    # remove old account 
                     print("Removed old account")
                     print()
                     acc = open("accounts.txt", "w")
@@ -126,6 +126,10 @@ while True:
         print()
         print("What is your key?")
         key = input()
+        while key == "":
+            print("Invalid key, try again.")
+            print("What is your key?")
+            key = input()
         decrypt(response, key)
     elif (response.startswith("q")):
         print("Exiting.")
